@@ -24,6 +24,9 @@ void draw(){
   for(int i=0; i<rocks.size(); i++){
     rocks.get(i).show();
     rocks.get(i).move();
+    if (dist((float)rocks.get(i).getCenterX(), (float)rocks.get(i).getCenterY(), (float)friend.getCenterX(), (float)friend.getCenterY()) < 20){
+      rocks.remove(i);
+    }
   }
 }
 
@@ -41,6 +44,6 @@ public void keyPressed(){
   }
   
   if (key == 'd'){
-    friend.accelerate(0.25);
+    friend.accelerate(0.5);
   }
 }
