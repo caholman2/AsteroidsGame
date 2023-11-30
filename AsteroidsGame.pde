@@ -1,5 +1,6 @@
 Spaceship friend = new Spaceship();
 Star[] galaxy = new Star[70];
+ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 
 void setup(){
   size(800,800);
@@ -8,15 +9,22 @@ void setup(){
     galaxy[i] = new Star();
     galaxy[i].show();
   }
+  for(int i=0; i<7; i++){
+    rocks.add(new Asteroid());
+  }
 }
 
 void draw(){
   background(0);
+  friend.show();
+  friend.move();
   for(int i=0; i<galaxy.length; i++){
     galaxy[i].show();
   }
-  friend.show();
-  friend.move();
+  for(int i=0; i<rocks.size(); i++){
+    rocks.get(i).show();
+    rocks.get(i).move();
+  }
 }
 
 public void keyPressed(){
