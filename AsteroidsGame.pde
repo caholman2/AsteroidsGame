@@ -26,6 +26,7 @@ void draw(){
     rocks.get(i).move();
     if (dist((float)rocks.get(i).getCenterX(), (float)rocks.get(i).getCenterY(), (float)friend.getCenterX(), (float)friend.getCenterY()) < 20){
       rocks.remove(i);
+      i--;
     }
   }
 }
