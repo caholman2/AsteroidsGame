@@ -1,6 +1,7 @@
 Spaceship friend = new Spaceship();
 Star[] galaxy = new Star[70];
 ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+ArrayList <Bullet> gals = new ArrayList <Bullet>();
 
 void setup(){
   size(800,800);
@@ -9,7 +10,7 @@ void setup(){
     galaxy[i] = new Star();
     galaxy[i].show();
   }
-  for(int i=0; i<7; i++){
+  for(int i=0; i<12; i++){
     rocks.add(new Asteroid());
   }
 }
@@ -21,13 +22,24 @@ void draw(){
   for(int i=0; i<galaxy.length; i++){
     galaxy[i].show();
   }
-  for(int i=0; i<rocks.size(); i++){
-    rocks.get(i).show();
-    rocks.get(i).move();
+  for(int i=rocks.size()-1; i>=0; i--){
     if (dist((float)rocks.get(i).getCenterX(), (float)rocks.get(i).getCenterY(), (float)friend.getCenterX(), (float)friend.getCenterY()) < 20){
       rocks.remove(i);
-      i--;
+      i=0;
     }
+    rocks.get(i).show();
+    rocks.get(i).move();
+  }
+  for(int i=gals.size()-1; i>=0; i--){
+    for(int j=rocks.size()-1; j>=0; j--){
+      if (dist((float)rocks.get(j).getCenterX(), (float)rocks.get(j).getCenterY(), (float)gals.get(i).getCenterX(), (float)gals.get(i).getCenterY()) < 20){
+        rocks.remove(j);
+        gals.remove(i);
+        i=0;
+      }
+    }
+    gals.get(i).show();
+    gals.get(i).move();
   }
 }
 
@@ -36,15 +48,19 @@ public void keyPressed(){
     friend.hyperspace();
   }
   
-  if (key == 'f'){
+  if (key == 'd'){
     friend.turn(10.0);
   }
   
-  if (key == 's'){
+  if (key == 'a'){
     friend.turn(-10.0);
   }
   
-  if (key == 'd'){
-    friend.accelerate(0.5);
+  if (key == 's'){
+    friend.accelerate(0.4);
+  }
+  
+  if (key == 'w'){
+    gals.add(new Bullet(friend));
   }
 }
