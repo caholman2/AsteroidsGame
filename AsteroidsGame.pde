@@ -36,6 +36,7 @@ void draw(){
         rocks.remove(j);
         gals.remove(i);
         i=0;
+        j=0;
       }
     }
     gals.get(i).show();
