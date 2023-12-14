@@ -10,7 +10,7 @@ void setup(){
     galaxy[i] = new Star();
     galaxy[i].show();
   }
-  for(int i=0; i<12; i++){
+  for(int i=0; i<8; i++){
     rocks.add(new Asteroid());
   }
 }
