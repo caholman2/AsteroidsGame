@@ -10,7 +10,7 @@ void setup(){
     galaxy[i] = new Star();
     galaxy[i].show();
   }
-  for(int i=0; i<8; i++){
+  for(int i=0; i<12; i++){
     rocks.add(new Asteroid());
   }
 }
@@ -23,14 +23,16 @@ void draw(){
     galaxy[i].show();
   }
   for(int i=rocks.size()-1; i>=0; i--){
+    rocks.get(i).show();
+    rocks.get(i).move();
     if (dist((float)rocks.get(i).getCenterX(), (float)rocks.get(i).getCenterY(), (float)friend.getCenterX(), (float)friend.getCenterY()) < 20){
       rocks.remove(i);
       break;
     }
-    rocks.get(i).show();
-    rocks.get(i).move();
   }
   for(int i=gals.size()-1; i>=0; i--){
+    gals.get(i).show();
+    gals.get(i).move();
     for(int j=rocks.size()-1; j>=0; j--){
       if (dist((float)rocks.get(j).getCenterX(), (float)rocks.get(j).getCenterY(), (float)gals.get(i).getCenterX(), (float)gals.get(i).getCenterY()) < 20){
         rocks.remove(j);
@@ -38,8 +40,6 @@ void draw(){
         break;
       }
     }
-    gals.get(i).show();
-    gals.get(i).move();
   }
 }
 
