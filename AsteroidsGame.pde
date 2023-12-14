@@ -25,7 +25,7 @@ void draw(){
   for(int i=rocks.size()-1; i>=0; i--){
     if (dist((float)rocks.get(i).getCenterX(), (float)rocks.get(i).getCenterY(), (float)friend.getCenterX(), (float)friend.getCenterY()) < 20){
       rocks.remove(i);
-      i=0;
+      break;
     }
     rocks.get(i).show();
     rocks.get(i).move();
@@ -35,8 +35,7 @@ void draw(){
       if (dist((float)rocks.get(j).getCenterX(), (float)rocks.get(j).getCenterY(), (float)gals.get(i).getCenterX(), (float)gals.get(i).getCenterY()) < 20){
         rocks.remove(j);
         gals.remove(i);
-        i=0;
-        j=0;
+        break;
       }
     }
     gals.get(i).show();
